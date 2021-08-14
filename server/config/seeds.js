@@ -5,11 +5,12 @@ db.once('open', async () => {
   await Category.deleteMany();
 
   const categories = await Category.insertMany([
-    { name: 'Food' },
-    { name: 'Household Supplies' },
-    { name: 'Electronics' },
+    { name: 'Tops' },
+    { name: 'Bottoms' },
+    { name: 'Shoes' },
     { name: 'Books' },
-    { name: 'Toys' }
+    { name: 'HomeDecor' },
+    { name: 'Electronics'}
   ]);
 
   console.log('categories seeded');
@@ -18,112 +19,210 @@ db.once('open', async () => {
 
   const products = await Product.insertMany([
     {
-      name: 'Tin of Cookies',
+      name: 'Mens Denim Shirt',
       description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
+        'Classic Denim shirt, Size: L',
+      image: 'T-mshirt1.jpeg',
       category: categories[0]._id,
-      price: 2.99,
-      quantity: 500
+      price: 10.00,
+      quantity: 5
     },
     {
-      name: 'Canned Coffee',
+      name: 'Mens Print Shirt',
       description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
+        'Cool Print short sleeve shit for Men, Size: L',
+      image: 'T-mshirt2.jpeg',
       category: categories[0]._id,
-      price: 1.99,
-      quantity: 500
+      price: 8.00,
+      quantity: 8
     },
     {
-      name: 'Toilet Paper',
+      name: 'Women Denim Shirt',
+      description:
+        'Classic Denim shirt, Size: Unisize',
+      image: 'T-wshirt1.jpeg',
+      category: categories[0]._id,
+      price: 11.00,
+      quantity: 12
+    },
+    {
+      name: 'Women Pink Blousse',
+      description:
+        'Classic Denim shirt, Size: Unisize',
+      image: 'T-pink.jpeg',
+      category: categories[0]._id,
+      price: 7.00,
+      quantity: 15
+    },
+    {
+      name: 'Mens Denim Jeans',
+      description:
+        'Loose fit Denim Jeans for Men, Size: 34 x 34.',
+      image: 'Bo-mjeans.jpeg',
+      category: categories[1]._id,
+      price: 12.00,
+      quantity: 10
+    },
+    {
+      name: 'Mens Black Shorts',
+      description:
+        'Loose fit shorts for Men.',
+      image: 'Bo-short.jpeg',
+      category: categories[1]._id,
+      price: 7.00,
+      quantity: 10
+    },
+    {
+      name: 'Pencil Denim Skirt',
       category: categories[1]._id,
       description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
+        'Trendy Denim Pencil Skirt.',
+      image: 'Bo-skirt.jpg',
       price: 7.99,
       quantity: 20
     },
     {
-      name: 'Handmade Soap',
+      name: 'Women Denim Jans',
       category: categories[1]._id,
       description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
-      image: 'soap.jpg',
-      price: 3.99,
+        'slim fit Blue Jeans, show up your curves, Size: M.',
+      image: 'Bo-wjeans.jpeg',
+      price: 19.99,
       quantity: 50
     },
     {
-      name: 'Set of Wooden Spoons',
-      category: categories[1]._id,
+      name: 'Chelsea Boots for Men',
+      category: categories[2]._id,
       description:
-        'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
-      image: 'wooden-spoons.jpg',
+        'Cool Black Vegan-lether chelsea boots, Size: 12',
+      image: 'S-mboots.jpeg',
       price: 14.99,
-      quantity: 100
+      quantity: 10
     },
     {
-      name: 'Camera',
+      name: 'Combat Boots for Women',
       category: categories[2]._id,
       description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
-      image: 'camera.jpg',
-      price: 399.99,
-      quantity: 30
+        'Cool Black Vegan-lether combat boots, Size: 6',
+      image: 'S-wboot.jpg',
+      price: 14.99,
+      quantity: 10
     },
     {
-      name: 'Tablet',
+      name: 'Pink Styletos',
       category: categories[2]._id,
       description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
-      image: 'tablet.jpg',
-      price: 199.99,
-      quantity: 30
+        'Gorgeous Pink Vegan-lether Styletos, Size: 6',
+      image: 'S-wheel.jpg',
+      price: 9.99,
+      quantity: 10
     },
     {
-      name: 'Tales at Bedtime',
+      name: 'Brown Heels',
+      category: categories[2]._id,
+      description:
+        'Pretty classy Brown Vegan-lether Heels, Size: 5',
+      image: 'S-wshoe.jpeg',
+      price: 15.00,
+      quantity: 15
+    },
+    {
+      name: 'The Shadow of the Wind',
       category: categories[3]._id,
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
-      image: 'bedtime-book.jpg',
-      price: 9.99,
+        'The Shadow of the Wind by Carlos Ruiz-Zafon',
+      image: 'B-book1.jpeg',
+      price: 8.00,
+      quantity: 10
+    },
+    {
+      name: 'The Woman in the Window',
+      category: categories[3]._id,
+      description:
+        'The Woman in the Window by A. J. Finn',
+      image: 'B-book2.jpeg',
+      price: 7.00,
+      quantity: 10
+    },
+    {
+      name: 'Harry Potter and the Order of Phoenix',
+      category: categories[3]._id,
+      description:
+        'Harry Potter and the Order of Phoenix by J. K. Rowling',
+      image: 'B-harry.jpeg',
+      price: 10.00,
+      quantity: 10
+    },
+    {
+      name: 'Percy Jackson and the Sea of Monsters',
+      category: categories[3]._id,
+      description:
+        'Percy Jackson and the Sea of Monsters by Rick Riordan',
+      image: 'B-percy.jpeg',
+      price: 7.00,
+      quantity: 12
+    },
+    {
+      name: 'Chair',
+      category: categories[4]._id,
+      description: 'Trendy Animal Print Chair for Office or general purpose',
+      image: 'H-chair.jpeg',
+      price: 31.99,
+      quantity: 25
+    },
+    {
+      name: 'Lamp',
+      category: categories[4]._id,
+      description: 'Cool Boho Lampfor accent decor',
+      image: 'H-lamp.jpeg',
+      price: 20.99,
+      quantity: 20
+    },
+    {
+      name: 'Wall Mirror',
+      category: categories[4]._id,
+      description:
+        'Beautiful Accent Mirror',
+      image: 'H-mirror.jpeg',
+      price: 27.99,
       quantity: 100
     },
     {
-      name: 'Spinning Top',
-      category: categories[4]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
-      image: 'spinning-top.jpg',
-      price: 1.99,
-      quantity: 1000
-    },
-    {
-      name: 'Set of Plastic Horses',
+      name: 'Contemporary Vasse',
       category: categories[4]._id,
       description:
-        'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
-      image: 'plastic-horses.jpg',
-      price: 2.99,
-      quantity: 1000
+        'Beautiful contemporary Vasse',
+      image: 'H-vasse.jpeg',
+      price: 16.99,
+      quantity: 49
     },
     {
-      name: 'Teddy Bear',
-      category: categories[4]._id,
+      name: 'Kindle Papperwhite',
+      category: categories[5]._id,
       description:
-        'Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.',
-      image: 'teddy-bear.jpg',
-      price: 7.99,
-      quantity: 100
+        'Kindle Papperwhite.',
+      image: 'E-kindle.jpeg',
+      price: 59.99,
+      quantity: 60
     },
     {
-      name: 'Alphabet Blocks',
-      category: categories[4]._id,
+      name: 'MacBook Air',
+      category: categories[5]._id,
       description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
-      image: 'alphabet-blocks.jpg',
-      price: 9.99,
-      quantity: 600
-    }
+        'MacBook Air in excelent conditions.',
+      image: 'E-laptop.jpeg',
+      price: 459.99,
+      quantity: 3
+    },
+    {
+      name: 'PlayStation 4',
+      category: categories[5]._id,
+      description:
+        'PlayStation 4 in excelent conditions.',
+      image: 'E-playstation.jpeg',
+      price: 159.99,
+      quantity: 7
+    },
     
   ]);
 
@@ -132,9 +231,9 @@ db.once('open', async () => {
   await User.deleteMany();
 
   await User.create({
-    firstName: 'Pamela',
-    lastName: 'Washington',
-    email: 'pamela@testmail.com',
+    firstName: 'Yaz',
+    lastName: 'Tinoco',
+    email: 'yaz@testmail.com',
     password: 'password12345',
     orders: [
       {
@@ -149,9 +248,9 @@ db.once('open', async () => {
   });
 
   await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
-    email: 'eholt@testmail.com',
+    firstName: 'Alsy',
+    lastName: 'Google',
+    email: 'alsy@testmail.com',
     password: 'password12345'
   });
 
