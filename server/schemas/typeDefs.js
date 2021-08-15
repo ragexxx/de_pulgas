@@ -46,6 +46,16 @@ type Auth {
   user: User
 }
   
+type Query {
+  categories: [Category]
+  products(category: ID, name: String): [Product]
+  allproducts: [Product]
+  product(_id: ID!): Product
+  user: User
+  order(_id: ID!): Order
+  stock(_id: ID!): Stock
+  checkout(products: [ID]!): Checkout
+}
 `;
 
 module.exports = typeDefs;
