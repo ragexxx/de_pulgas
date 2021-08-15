@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order } = require('../models');
+const { User, Product, Category, Order, Stock } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -106,6 +106,123 @@ const resolvers = {
           return { session: session.id };
         }
       },
+
+      Mutation: {
+        addUser: async (parent, args) => {
+          const user = await User.create(args);
+          const token = signToken(user);
+    
+          return { token, user };
+        },
+        addOrder: async (parent, { products }, context) => {
+          console.log(context);
+          if (context.user) {
+            const order = new Order({ products });
+    
+            await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+    
+            return order;
+          }
+    
+          throw new AuthenticationError('Not logged in');
+        },
+        addStock: async (parent, { products }, context) => {
+          console.log(context);
+          if (context.user) {
+            const stock = new Stock({ products });
+    
+            await User.findByIdAndUpdate(context.user._id, { $push: { stockes: stock } });
+    
+            return stock;
+          }
+    
+          throw new AuthenticationError('Not logged in');
+        },
+        addProduct: async(parent,args, context) => {
+          console.log(context);
+          if(context){
+            /* const product = new Product(args); */
+            const product =await Product.create(args);
+            await User.findByIdAndUpdate(context.user._id, { $push: { products: product , stockes:{products: product}  }});
+    
+            return product;
+    
+          }
+    
+          throw new AuthenticationError('Not logged in');
+          
+        },
+        deleteUserProduct: async(parent,{_id}, context) => {
+         
+          if(context){
+           const product =await Product.findById(_id);
+            console.log(product);
+            await User.findByIdAndUpdate(context.user._id, { $pull: {  stockes:{products: product}  }});
+           /*  await Product.deleteOne({ product }) */
+            return product
+           /*  return product.filter((e)=>e._id !== _id); */
+          }
+    
+          throw new AuthenticationError('Not logged in');
+          
+        },
+        deleteProduct: async(parent,{_id}, context) => {
+         
+          if(context){
+            const product =await Product.findById(_id);
+            
+            await User.findByIdAndUpdate(context.user._id, { $pull: {  stockes:{products: product}  }});
+            await Product.deleteOne(product)
+           
+            return "Deleted"
+          
+          }
+    
+          throw new AuthenticationError('Not logged in');
+          
+        },
+        updateUser: async (parent, args, context) => {
+          if (context.user) {
+            return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+          }
+    
+          throw new AuthenticationError('Not logged in');
+        },
+        updateProduct: async (parent, { _id, quantity }) => {
+          const decrement = Math.abs(quantity) * -1;
+    
+          return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+        },
+        login: async (parent, { email, password }) => {
+          const user = await User.findOne({ email });
+    
+          if (!user) {
+            throw new AuthenticationError('Incorrect credentials');
+          }
+    
+          const correctPw = await user.isCorrectPassword(password);
+    
+          if (!correctPw) {
+            throw new AuthenticationError('Incorrect credentials');
+          }
+    
+          const token = signToken(user);
+    
+          return { token, user };
+        },
+        addCategory: async (parent, args,context) => {
+          console.log(context);
+          if (context.user) {
+            const category = await Category.create(args);
+    
+            await User.findByIdAndUpdate(context.user._id, { $push: { categories: category } });
+    
+            return category;
+          }
+          throw new AuthenticationError('Not logged in');
+        },
+      }
+     
   
 };
 
