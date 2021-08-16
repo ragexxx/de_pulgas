@@ -11,8 +11,8 @@ type Product {
   name: String
   description: String
   image: String
-  quantity: Int
-  price: Float
+  quantity: String
+  price: String
   category: Category
 }
 
@@ -63,7 +63,7 @@ type Mutation {
   updateUser(firstName: String, lastName: String, email: String, password: String): User
   updateProduct(_id: ID!, quantity: Int!): Product
   login(email: String!, password: String!): Auth
-  addProduct(name: String!, description: String!, image:String!,quantity: Int!, price: Float!,category: String!):Product
+  addProduct(name: String!, description: String!, image:String!,quantity: image:String!, price: image:String!,category: String!):Product
   addStock(products: [ID]!): Stock
   addCategory(name: String!): Category
   deleteUserProduct(_id: ID!):Product
