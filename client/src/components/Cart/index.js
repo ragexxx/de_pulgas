@@ -8,6 +8,7 @@ import Auth from '../../utils/auth';
 import { useStoreContext } from '../../utils/GlobalState';
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from '../../utils/actions';
 import './style.css';
+import { Link } from "react-router-dom";
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -88,7 +89,7 @@ const Cart = () => {
             {Auth.loggedIn() ? (
               <button className= "waves-effect waves-light btn green accent-4" onClick={submitCheckout}>Checkout</button>
             ) : (
-              <span>(log in to check out)</span>
+              <span ><Link style={{color: "black"}} to="/login">log in to check out!</Link></span>
             )}
           </div>
         </div>

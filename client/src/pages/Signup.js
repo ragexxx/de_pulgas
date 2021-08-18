@@ -34,9 +34,9 @@ function Signup(props) {
     <div className="container">
       {/* <Link to="/login">← Go to Login</Link> */}
 
-      <div classname="input-field">
-      <form onSubmit={handleFormSubmit}>
-      <h2>Sign Up</h2>
+      <div className="input-field">
+        <form onSubmit={handleFormSubmit}>
+          <h2>Sign Up</h2>
           <label htmlFor="firstName"></label>
           <input
             placeholder="First Name"
@@ -71,10 +71,10 @@ function Signup(props) {
             id="pwd"
             onChange={handleChange}
           />
-        <div>
-          <button className="btn waves-effect waves-light #ffb300 amber darken-1" type="submit">Sign Up</button>
-        </div>
-      </form>
+          <div>
+            <button className="btn waves-effect waves-light #ffb300 amber darken-1" type="submit">Sign Up</button>
+          </div>
+        </form>
       </div>
     </div>
   );
