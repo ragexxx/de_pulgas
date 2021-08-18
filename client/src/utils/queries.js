@@ -65,6 +65,17 @@ export const QUERY_USER = gql`
           image
         }
       }
+      stockes {
+        _id
+        products {
+          _id
+          name
+          description
+          price
+          quantity
+          image
+        }
+      }
     }
   }
 `;

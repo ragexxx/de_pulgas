@@ -84,7 +84,6 @@ function AddProduct(props) {
                         onChange={handleChange}
                     />
                     
-                   
 
                     <label htmlFor="category" ></label>
                     <select name="category" className="browser-default" defaultValue onChange={handleChange}>
