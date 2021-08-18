@@ -158,7 +158,7 @@ db.once('open', async () => {
       category: categories[3]._id,
       description:
         'Percy Jackson and the Sea of Monsters by Rick Riordan',
-      image: 'B-percy.jpeg',
+      image: 'B-percy.jpg',
       price: '7.00',
       quantity: '12'
     },
@@ -166,7 +166,7 @@ db.once('open', async () => {
       name: 'Chair',
       category: categories[4]._id,
       description: 'Trendy Animal Print Chair for Office or general purpose',
-      image: 'H-chair.jpeg',
+      image: 'H-chair.jpg',
       price: '31.99',
       quantity: '25'
     },
