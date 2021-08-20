@@ -2,7 +2,7 @@ import React from 'react';
 import { useStoreContext } from "../../utils/GlobalState";
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
-
+import { Image } from 'cloudinary-react';
 const CartItem = ({ item }) => {
 
   const [, dispatch] = useStoreContext();
@@ -39,9 +39,10 @@ const CartItem = ({ item }) => {
   return (
     <div className="flex-row">
       <div>
-        <img
-          src={`/images/${item.image}`}
-          alt=""
+        <Image
+          style={{ height: 50 }}
+          cloudName="dquhmekvj"
+          publicId={item.image}
         />
       </div>
       <div>
