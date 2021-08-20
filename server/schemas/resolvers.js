@@ -193,6 +193,13 @@ const resolvers = {
     
           return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
         },
+
+        updateQuantityProduct: async (parent, { _id, quantity }) => {
+          const decrement = Math.abs(quantity) -1;
+    
+          return await Product.findByIdAndUpdate(_id, {quantity: decrement}, { new: true });
+        },
+        
         login: async (parent, { email, password }) => {
           const user = await User.findOne({ email });
     
