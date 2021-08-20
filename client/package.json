@@ -12,6 +12,8 @@
     "@testing-library/user-event": "^7.2.1",
     "apollo-link-context": "^1.0.20",
     "apollo-boost": "^0.4.7",
+    "axios": "^0.21.1",
+    "cloudinary-react": "^1.7.0",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "jwt-decode": "^2.2.0",
