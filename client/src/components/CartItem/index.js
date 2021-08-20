@@ -44,7 +44,7 @@ const CartItem = ({ item }) => {
             alt={currentProduct.name}
           /> */}
         <Image
-          style={{ height: 300 }}
+          style={{ height: 80 }}
           cloudName="dquhmekvj"
           publicId={item.image}
         />
