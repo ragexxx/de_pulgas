@@ -94,7 +94,11 @@ function Detail() {
 
           <p>
             <strong>Price:</strong>${currentProduct.price}{' '}
+            {(currentProduct.quantity>0) ? (
             <button style={{margin:"5px"}} className = "waves-effect waves-light btn-small #ffb300 amber darken-1" onClick={addToCart}>Add to Cart</button>
+            ):(
+              <button style={{margin:"5px"}} className = "waves-effect waves-light btn-small #ffb300 amber darken-1" disabled={true}>Out of stock</button>
+              )}
             <button className = "waves-effect waves-light btn-small #ff5252 red accent-2"
               disabled={!cart.find((p) => p._id === currentProduct._id)}
               onClick={removeFromCart}
