@@ -18,14 +18,17 @@ Go to the following link https://github.com/ragexxx/de_pulgas and clone it
 ![image](https://user-images.githubusercontent.com/79543799/130164933-1a93fd8c-56cd-4028-b0eb-bb590503bdcd.png)
 
 Go to Git-bash or terminal and page the github's with the following code:
+
 `$ git clone git@github.com:ragexxx/de_pulgas.git`
 
 To install the necessary dependencies, run the following command:
+
 `npm install`
 
 ### Usage
 * The application will be invoked by using the following command:
-`npm run develop`
+
+`npm run start:dev`
 
 * The following animation shows the application functionality:
 
