@@ -4,6 +4,7 @@ import { pluralize } from "../../utils/helpers"
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import { Image } from 'cloudinary-react';
 
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
@@ -42,17 +43,22 @@ function ProductItem(item) {
   return (
     <div className="card px-1 py-1">
       <Link to={`/products/${_id}`}>
-        <img
+        {/* <img
           alt={name}
           src={`/images/${image}`}
+        /> */}
+        <Image
+          style={{ height: 150 }}
+          cloudName="dquhmekvj"
+          publicId={item.image}
         />
-        <p style={{color: "black"}}>{name}</p>
+        <p style={{ color: "black" }}>{name}</p>
       </Link>
       <div>
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button className = "waves-effect waves-light btn-small container #ffb300 amber darken-1" onClick={addToCart}>Add to cart</button>
+      <button className="waves-effect waves-light btn-small container #ffb300 amber darken-1" onClick={addToCart}>Add to cart</button>
     </div>
   );
 }
