@@ -34,6 +34,13 @@ class AuthService {
     window.location.assign('/');
   }
 
+  removeMyProduct(){
+    window.location.assign('/myProducts');
+  }
+  removeProduct(){
+    window.location.assign('/myProducts');
+  }
+  
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
