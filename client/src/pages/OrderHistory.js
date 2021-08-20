@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import {Image} from 'cloudinary-react';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
@@ -15,7 +15,7 @@ function OrderHistory() {
   return (
     <>
       <div className="container">
-        <Link style={{color: "black"}} to="/">← Back to Products</Link>
+        <Link style={{ color: "black" }} to="/">← Back to Products</Link>
 
         {user ? (
           <>
@@ -31,8 +31,13 @@ function OrderHistory() {
                   {order.products.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">
                       <Link to={`/products/${_id}`}>
-                        <img alt={name} src={`/images/${image}`} />
-                        <p style={{color: "black"}}>{name}</p>
+                        {/* <img alt={name} src={`/images/${image}`} /> */}
+                        <Image
+                          style={{ height: 300 }}
+                          cloudName="dquhmekvj"
+                          publicId={image}
+                        />
+                        <p style={{ color: "black" }}>{name}</p>
                       </Link>
                       <div>
                         <span>${price}</span>

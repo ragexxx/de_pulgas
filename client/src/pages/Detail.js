@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Image} from 'cloudinary-react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
@@ -102,10 +103,15 @@ function Detail() {
             </button>
           </p>
 
-          <img
+          {/* <img
             src={`/images/${currentProduct.image}`}
             alt={currentProduct.name}
-          />
+          /> */}
+          <Image
+          style={{height:300} }
+          cloudName="dquhmekvj"
+          publicId={currentProduct.image}
+        />
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
