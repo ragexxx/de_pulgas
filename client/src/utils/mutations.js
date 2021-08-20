@@ -66,3 +66,20 @@ mutation addProduct ($name: String!, $description: String!, $image:String!, $qua
   
 }
 `;
+
+export const REMOVE_MYPRODUCT = gql`
+mutation deleteUserProduct($_id: ID!){
+  deleteUserProduct(_id: $_id){
+    name
+  }
+   
+  
+}
+`;
+
+export const REMOVE_PRODUCT = gql`
+mutation deleteProduct($_id: ID!){
+  deleteProduct(_id: $_id)
+   
+  
+}`;
