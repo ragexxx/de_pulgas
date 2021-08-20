@@ -83,3 +83,19 @@ mutation deleteProduct($_id: ID!){
    
   
 }`;
+
+
+export const UPDATE_PRODUCT =gql`
+mutation updateQuantityProduct ($_id: ID!,$quantity: Int!){
+  updateProduct(_id:$_id, quantity:$quantity){
+    _id
+      name
+      description
+      price
+      quantity
+      category {
+        _id
+        name
+      }
+  }
+}`
