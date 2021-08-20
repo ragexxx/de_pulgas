@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
-
+import Auth from '../utils/auth';
 import { ADD_PRODUCT } from '../utils/mutations';
-
+import Axios from 'axios';
 import { QUERY_CATEGORIES } from '../utils/queries';
+
 function AddProduct(props) {
-    const [formState, setFormState] = useState({ name: '', description: '', quantity: 0, price: 0.00, image: "H-lamp.jpeg", category: "" });
+    const [imageSelected, setImageSelected] = useState()
+    const [urlCloud, seturlCloud] = useState({ image: "" })
+    const [formState, setFormState] = useState({ name: '', description: '', quantity: 0, price: 0.00, image: "", category: "" });
     const [addProduct] = useMutation(ADD_PRODUCT);
     const { loading, error, data } = useQuery(QUERY_CATEGORIES)
+
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
-    
-   /*  console.log("dataa", data.categories) */
+
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -23,29 +26,76 @@ function AddProduct(props) {
                 description: formState.description,
                 quantity: formState.quantity,
                 price: formState.price,
-                image: formState.image,
+                image: urlCloud.image,
                 category: formState.category,
             },
         });
-
+        Auth.addProduct();
     };
 
+
+    let url = "";
+    const uploadImage = async (event) => {
+        const formData = new FormData()
+        formData.append("file", imageSelected)
+        /** formData.append("upload_preset",<Upload presets Name>) */
+        formData.append("upload_preset", "qyk1qieu")
+        /*  */
+        /*https//api.cloudinary.com/v1_1/<CloudName>/image/upload*/
+        Axios.post("https://api.cloudinary.com/v1_1/dquhmekvj/image/upload", formData).then((response) => {
+            console.log(response)
+            url = response.data.url
+            console.log(url)
+            seturlCloud({
+                ...urlCloud,
+                image: url
+            })
+            console.log(seturlCloud);
+
+
+            /*    setFormState({
+                ...formState,
+                image: url,
+               }); */
+        })
+
+
+
+    }
     const handleChange = (event) => {
         const { name, value } = event.target;
-       
+
+        if (name === "image") {
+            setImageSelected(event.target.files[0]);
+            const formData = new FormData()
+            formData.append("file", imageSelected)
+            /** formData.append("upload_preset",<Upload presets Name>) */
+
+        }
         setFormState({
             ...formState,
             [name]: value,
         });
     };
 
+    
     return (
         <div className="container">
             <Link to="/myProducts">← Go your products</Link>
 
+            <div>
+                <h2>Add New Product</h2>
+                <button className="btn waves-effect waves-light #ffb300 amber darken-1" onClick={uploadImage}>Upload Photo</button>
+            </div>
             <div className="input-field">
-                <form onSubmit={handleFormSubmit}>
-                    <h2>Add New Product</h2>
+                <form onSubmit={handleFormSubmit} >
+                    <label htmlFor="image"></label>
+                    <input
+                        name="image"
+                        type="file"
+                        id="image"
+                        onChange={handleChange}
+                    />
                     <label htmlFor="name"></label>
                     <input
                         placeholder="Name"
@@ -83,7 +133,8 @@ function AddProduct(props) {
                         step="0.01"
                         onChange={handleChange}
                     />
-                    
+
+
 
                     <label htmlFor="category" ></label>
                     <select name="category" className="browser-default" defaultValue onChange={handleChange}>
@@ -96,19 +147,15 @@ function AddProduct(props) {
                     </select>
 
 
-                    <label htmlFor="image"></label>
-                    <input
-                        name="image"
-                        type="file"
-                        id="image"
-                        onChange={handleChange}
-                    />
+
+
                     <br></br>
                     <br></br>
                     <div>
-                        <button className="btn waves-effect waves-light #ffb300 amber darken-1" type="submit">Sign Up</button>
+                        <button className="btn waves-effect waves-light #ffb300 amber darken-1" type="submit" >Add</button>
                     </div>
                 </form>
+
             </div>
         </div>
     );
