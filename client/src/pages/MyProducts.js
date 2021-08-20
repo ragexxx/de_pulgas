@@ -27,7 +27,7 @@ function MyProducts() {
                 <div className="flex-row">
                   {stock.products.map(({ _id, image, name, price }, index) => (
                     <div key={index} className="card px-1 py-1">
-                      <Link to={`/products/${_id}`}>
+                      <Link to={`/myProducts/${_id}`}>
                         {/* <img alt={name} src={`/images/${image}`} /> */}
                         <Image
                           style={{ height: 300 }}
