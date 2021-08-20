@@ -39,8 +39,12 @@ const CartItem = ({ item }) => {
   return (
     <div className="flex-row">
       <div>
+        {/* <img
+            src={`/images/${currentProduct.image}`}
+            alt={currentProduct.name}
+          /> */}
         <Image
-          style={{ height: 50 }}
+          style={{ height: 300 }}
           cloudName="dquhmekvj"
           publicId={item.image}
         />
