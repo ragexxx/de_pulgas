@@ -152,7 +152,7 @@ function AddProduct(props) {
                     <br></br>
                     <br></br>
                     <div>
-                        <button className="btn waves-effect waves-light #ffb300 amber darken-1" type="submit" >Add</button>
+                        <button className="btn waves-effect waves-light #ffb300 amber darken-1" type="submit" >Add product</button>
                     </div>
                 </form>
 

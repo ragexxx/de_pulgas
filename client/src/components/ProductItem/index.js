@@ -58,7 +58,12 @@ function ProductItem(item) {
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button className="waves-effect waves-light btn-small container #ffb300 amber darken-1" onClick={addToCart}>Add to cart</button>
+      {(item.quantity>0) ? (
+         <button className="waves-effect waves-light btn-small container #ffb300 amber darken-1" onClick={addToCart}>Add to cart</button>
+      ):(
+        <button className="waves-effect waves-light btn-small container #ffb300 amber darken-1" disabled={true}>Out of stock</button>
+      )}
+    
     </div>
   );
 }
