@@ -39,8 +39,7 @@ function AddProduct(props) {
     const uploadImage = async (event) => {
         const formData = new FormData()
         formData.append("file", imageSelected)
-        /** formData.append("upload_preset",<Upload presets Name>) */
-        formData.append("upload_preset", process.env.PRESENT_NAME)
+        formData.append("upload_preset", 'qyk1qieu')
         
         Axios.post(`https://api.cloudinary.com/v1_1/dquhmekvj/image/upload`, formData).then((response) => {
             console.log(response)
