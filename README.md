@@ -49,7 +49,7 @@ To install the necessary dependencies, run the following command:
 
 ### Links
 * Github repository: https://github.com/ragexxx/de_pulgas
-* Deployed application: https://depulgas.herokuapp.com/
+* Deployed application: 
 
 ### Authors
 * **`Yazmin Tinoco`**   - [Yazmin30-bot](https://github.com/Yazmin30-bot/)
