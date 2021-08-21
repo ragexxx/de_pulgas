@@ -57,6 +57,7 @@ const CartItem = ({ item }) => {
             type="number"
             placeholder="1"
             value={item.purchaseQuantity}
+            max={item.quantity}
             onChange={onChange}
           />
           <span
