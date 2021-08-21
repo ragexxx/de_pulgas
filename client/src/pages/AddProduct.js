@@ -6,6 +6,7 @@ import Auth from '../utils/auth';
 import { ADD_PRODUCT } from '../utils/mutations';
 import Axios from 'axios';
 import { QUERY_CATEGORIES } from '../utils/queries';
+require('dotenv').config();
 
 function AddProduct(props) {
     const [imageSelected, setImageSelected] = useState()
@@ -39,10 +40,9 @@ function AddProduct(props) {
         const formData = new FormData()
         formData.append("file", imageSelected)
         /** formData.append("upload_preset",<Upload presets Name>) */
-        formData.append("upload_preset", "qyk1qieu")
-        /*  */
-        /*https//api.cloudinary.com/v1_1/<CloudName>/image/upload*/
-        Axios.post("https://api.cloudinary.com/v1_1/dquhmekvj/image/upload", formData).then((response) => {
+        formData.append("upload_preset", process.env.PRESENT_NAME)
+        
+        Axios.post(`https://api.cloudinary.com/v1_1/dquhmekvj/image/upload`, formData).then((response) => {
             console.log(response)
             url = response.data.url
             console.log(url)
